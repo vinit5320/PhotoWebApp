@@ -1,0 +1,316 @@
+html {
+    background: #fff;
+    color: #333;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility
+}
+
+.red-word {
+    color: #cd0a0a;
+    font-size: 1.0em;
+}
+
+.dark-blue-word {
+    color: #0e305e;
+}
+
+/*Table*/
+.borderless td, .borderless th {
+    border: none !important;
+}
+
+.login-table {
+    width: 100%;
+    text-align: right;
+    color: white;
+}
+
+.login-table td {
+    width: 36%;
+    padding: 1%;
+}
+
+.login-table input {
+    width: 80%;
+}
+
+.login-table .short-input {
+    width: 20em;
+}
+
+.info-table table {
+    table-layout: fixed;
+}
+
+.info-table details {
+    margin-top: 1%;
+}
+
+.info-table input {
+    color: #57068c;
+    font-size: 1.0em;
+    /*width: 15em;*/
+}
+
+.info-table textarea {
+    color: #57068c;
+    font-size: 1.0em;
+    height: auto;
+    width: 95%;
+}
+
+/*Info Table End*/
+
+.content-summary {
+    outline: none;
+    cursor: pointer;
+    font-size: 1.0em;
+    color: #0d77b6;
+}
+
+.float-right-middle {
+    float: right;
+    line-height: 100%;
+    vertical-align: middle;
+}
+
+.float-left-middle {
+    float: right;
+    line-height: 100%;
+    vertical-align: middle;
+}
+
+hr {
+    margin: 0.5% 1.5% 0.5% 0;
+    display: block;
+    border-color: #0d77b6;
+    border-style: inset;
+    border-width: 1px;
+}
+
+/*Modal*/
+.max-modal-window .modal-dialog {
+    width: 80%;
+}
+
+/*Misc*/
+#nyu-login {
+    vertical-align: top;
+    background: white;
+    background-size: 100px 25px;
+    display: inline-block;
+    color: dimgray;
+    text-align: center;
+    border-radius: 1px;
+    width: 100px;
+    height: 25px;
+}
+
+#nyu-login .icon-wrapper {
+    width: 25px;
+    float: left;
+    height: 25px;
+    padding: 2px;
+}
+
+#nyu-login span.icon {
+    background: url('../images/nyu_icon.jpg') no-repeat;
+    background-size: 100% 100%;
+    margin-top: -25px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#nyu-login span.button-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0.5px;
+    margin-left: 3px;
+    margin-right: 6px;
+    font-size: 11px;
+    letter-spacing: .21px;
+    line-height: 24px;
+}
+
+/*Form Validation*/
+.ng-touched.ng-valid {
+    border: 1px dodgerblue solid;
+}
+
+.ng-touched.ng-invalid {
+    border: 1px red solid;
+}
+
+.required-star {
+    color: red !important;
+}
+
+.error-msg {
+    color: red !important;
+}
+
+/*Misc*/
+.fix-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.version-active {
+    color: red;
+}
+
+/*Cover*/
+
+.cover {
+    /*TODO: Change this file name*/
+    height: 100%;
+
+}
+
+/*Banner*/
+.banner-info {
+    margin: 10% 0 0;
+    text-align: center;
+}
+
+.banner-info h3 {
+    color: #fff;
+    font-size: 2.6em;
+    font-weight: 800;
+    margin: 0 0 .2em;
+    text-transform: uppercase;
+}
+
+.banner-info p {
+    font-size: 18px;
+    color: #fff;
+    width: 54%;
+    margin: 0 auto;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.container:before, .container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container .info {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.container .info h1 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #1a1a1a;
+}
+
+.container .info span {
+    color: #4d4d4d;
+    font-size: 12px;
+}
+
+.container .info span a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.container .info span .fa {
+    color: #EF3B3A;
+}
+
+input:not([type]), input[type="text"], input[type="email"] {
+    height: 25px;
+    border: 1px solid #737E83;
+    background: white;
+    margin: 0 0 5px;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #black;
+    background-position: right 6px center;
+}
+
+/*Login CSS*/
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+.login-form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    margin-top: 30px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login-form span {
+    font-family: "Roboto", sans-serif;
+}
+
+.login-form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #590998;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.login-form button:hover, .login-form button:active, .login-form button:focus {
+    background: #410273;
+}
+
+.login-form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.login-form .message a {
+    color: #590998;
+    text-decoration: none;
+}
+
+.login-form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 80%;
+    height: 52px;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 0px;
+}
+
+.mySpinner {
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
