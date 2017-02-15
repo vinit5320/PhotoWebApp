@@ -8,14 +8,6 @@ html {
     text-rendering: optimizeLegibility
 }
 
-.red-word {
-    color: #cd0a0a;
-    font-size: 1.0em;
-}
-
-.dark-blue-word {
-    color: #0e305e;
-}
 
 /*Table*/
 .borderless td, .borderless th {
