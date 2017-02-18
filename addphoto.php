@@ -19,11 +19,13 @@ $allowed =  array('gif','png' ,'jpg', 'jpeg');
 
 if(isset($_POST['submit'])){
 
-    $ext = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
-    if(in_array($ext,$allowed) ) {
-        $insertQuery = "INSERT INTO photoApp_photos (username,imageName,caption) VALUES ('$usrname','".$_FILES['file']['name']."','".$_POST['caption']."')";
+    $extension = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+    if(in_array($extension,$allowed) ) {
+        $mixName = explode(".", $_FILES["file"]["name"]);
+        $newName = round(microtime(true)) . '.' . end($mixName);
+        move_uploaded_file($_FILES["file"]["tmp_name"], "uploads/" . $usrname ."_". $newName);
+        $insertQuery = "INSERT INTO photoApp_photos (username,imageName,caption) VALUES ('$usrname','".$usrname ."_". $newName."','".$_POST['caption']."')";
         $result=mysqli_query($connection, $insertQuery);
-        move_uploaded_file($_FILES['file']['tmp_name'],"uploads/".$usrname_."".$_FILES["file"]["name"]);
         $message = "Image uploaded successfully!";
         echo "<script type='text/javascript'>alert('$message');</script>";
     } else {
@@ -40,13 +42,9 @@ if(isset($_POST['submit'])){
     <meta charset="utf-8">
 
     <title>Welcome, <?php echo $mainname; ?></title>
-
-    <!--Angular Bootstrap -->
-    <script src="angularjs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <link rel="stylesheet" href="angularjs/bootstrap/dist/css/bootstrap.min.css">
-
     <!--Style Sheet-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="angularjs/bootstrap/dist/css/bootstrap.min.css">
     <!---->
 
 </head>
@@ -81,8 +79,8 @@ if(isset($_POST['submit'])){
     <br><br>
     <form action=""  method="post" enctype="multipart/form-data">
         <input type="file" name="file">
-        <br>
-        <input type="text" name="caption">
+        <br>Image Caption:
+        <input type="text" name="caption"><br><br>
         <input type="submit" name="submit" value="Add Photo">
     </form>
 </section>

@@ -13,6 +13,14 @@ while($row= mysqli_fetch_array( $result ))
 if($mainname == ""){
     header("location:index.php");
 }
+
+$limit = 10; // Limited number of Images per page
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+$start_from = ($page-1) * $limit;
+
+$sql = "SELECT * FROM `photoApp_photos` ORDER BY `photoApp_photos`.`timestamp` DESC LIMIT $start_from, $limit";
+$result = mysqli_query ($connection,$sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -21,13 +29,17 @@ if($mainname == ""){
     <meta charset="utf-8">
 
     <title>Welcome, <?php echo $mainname; ?></title>
-
-    <!--Angular Bootstrap -->
-    <script src="angularjs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <link rel="stylesheet" href="angularjs/bootstrap/dist/css/bootstrap.min.css">
     <!--Style Sheet-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="angularjs/bootstrap/dist/css/bootstrap.min.css">
     <!---->
+
+    <script>
+        function imgchange(num){
+            $("#imgs").attr('src',$('img')[num].src);
+            $("#captionText").text("Caption: "+$('#caption')[num].text());
+        }
+    </script>
 
 </head>
 <body>
@@ -59,37 +71,33 @@ if($mainname == ""){
 
     <div class="row">
         <?php
-        $q=mysqli_query($connection, "SELECT * FROM `photoApp_photos` ORDER BY `photoApp_photos`.`timestamp` DESC");
-        while($row=mysqli_fetch_assoc($q)){
-            echo "<a href='#' data-toggle='modal' data-target='#myModal'>";
+        $i=0;
+        while($row=mysqli_fetch_assoc($result)){
             echo "<div class='col-lg-4 col-sm-6'>";
-            echo "<div class='thumbnail''>";
-            echo "<img style='height: 188px;' src='uploads/".$row['imageName']."'>";
-            echo"<br>";
+            echo "<div class='thumbnail'>";
+            echo "<a href='#' data-toggle='modal' data-target='#myModal' onclick='imgchange(".$i.")'>";
+            echo "<img style='height: 188px;' id='mainImg' src='uploads/".$row['imageName']."'>";
+            echo "</a>";
             echo "<hr>";
             if($row['caption'] == ""){
-                echo "<span>No Caption<span style='float: right; color:#000;'>".$row['username']."</span></span>";
+                echo "<span>No Caption</span><p style='float: right; color:#000;'>".$row['username']."</p>";
             } else {
-                echo "<span>" . $row['caption'] . "<span style='float: right; color:#000;'>".$row['username']."</span></span>";
+                echo "<span id='caption'>Caption: " . $row['caption'] . "</span><p style='float: right; color:#000;'>".$row['username']."</p>";
             }
             echo "</div>";
             echo "</div>";
-            echo "</a>";
+            $i++;
         }
         ?>
     </div>
 </div>
-
+<!-- MODAL VIEW -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <p id="captionText"></p>
+                <img id="imgs" style="width: 100%;"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -99,6 +107,26 @@ if($mainname == ""){
     </div>
 </div>
 
+<?php
+$sql = "SELECT COUNT(username) FROM photoApp_photos";
+$countResult = mysqli_query($connection,$sql);
+$row = mysqli_fetch_row($countResult);
+$total = $row[0];
+$pages = ceil($total / $limit);
+if($pages != 1) {
+    $pageLink = "<ul style='margin-left: 1%;' class='pagination'>";
+    for ($i = 1; $i <= $pages; $i++) {
+        if ($page == $i) {
+            $pageLink .= "<li class='active'><a href='home.php?page=" . $i . "'>" . $i . "</a></li>";
+        } else {
+            $pageLink .= "<li><a href='home.php?page=" . $i . "'>" . $i . "</a></li>";
+        }
+
+    };
+    echo $pageLink . "</ul>";
+}
+?>
+<br><br>
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
