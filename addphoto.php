@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="utf-8">
 
-    <title>Welcome, <?php echo $mainname; ?></title>
+    <title>Welcome, <?php echo strip_tags($mainname); ?></title>
     <!--Style Sheet-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="angularjs/bootstrap/dist/css/bootstrap.min.css">
@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
             <li role="presentation" class="active"><a href="addphoto.php">Add Photo</a></li>
             <li role="presentation" class="dropdown" style="margin-left: 1%;">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <?php echo $mainname; ?> <span class="caret"></span>
+                    <?php echo strip_tags($mainname); ?> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li role="presentation"><a href="profile.php">Profile</a></li>

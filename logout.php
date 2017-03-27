@@ -1,6 +1,6 @@
 <?php
 include 'library.php';
-session_destroy();
 unset($_SESSION['sessionVar']);
+session_destroy();
 header("location:index.php");
 ?>

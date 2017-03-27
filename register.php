@@ -7,26 +7,47 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Register Form</title>
-    <link rel="stylesheet" href="css/style.css">
     <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--Style Sheet-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="angularjs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!---->
 </head>
 <body  id="backgroundTest">
-<section class="container">
-    <div class="login">
-        <h1>Fill in details to register</h1>
-        <form method="post" action="?act=register">
-            <p><input type='text' name='name' size='30' placeholder='Full Name'></p>
-            <p><input type='text' name='username' size='30' placeholder='Desired Username'></p>
-            <p><input type='password' name='password' size='30' placeholder='Password'></p>
-            <p><input type='password' name='password_conf' size='30' placeholder='Retype Password'></p>
-            <p><input type='text' name='email' size='30' placeholder='Email Address'></p>
 
-            <p class="submit"><input type="submit" name="commit" value="Register User"></p>
-        </form>
-    </div>
 
-    <div class="login-help">
-        <p>To Login as an existing user <a href="index.php">click here</a>.</p>
+<section id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-wrap">
+                    <h1>Fill in details to register</h1>
+                    <form role="form" action="?act=register" method="post" id="login-form" autocomplete="off">
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Full Name</label>
+                            <input type="text" name="name" id="email" size="30" class="form-control" placeholder="full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Desired Username</label>
+                            <input type="text" name="username" id="email" size="30" class="form-control" placeholder="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="key" class="sr-only">Password</label>
+                            <input type="password" name="mypassword" id="key" size="30" class="form-control" placeholder="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="abc@xyz.com">
+                        </div>
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" name="commit" value="Register">
+                    </form>
+                    <div class="login-help">
+                        <p>To Login as an existing user <a href="index.php">click here</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -85,7 +106,6 @@ function register(){
     $sql="SELECT email FROM photoApp_user WHERE email='$email'";
     $email_check=mysqli_query($connection, $sql);
     $do_email_check = mysql_num_rows($email_check);
-    echo "hello  email ".$do_email_check."";
     if($do_email_check>0){
         $message = "Email is already in use!";
         echo "<script type='text/javascript'>alert('$message');</script>";

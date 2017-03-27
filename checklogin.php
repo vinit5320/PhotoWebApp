@@ -2,11 +2,11 @@
 include 'library.php';
 
 // username and password sent from login page
-$myusername = $_POST['myusername'];
-$mypassword = $_POST['mypassword'];
+$myusername = clean($_POST['myusername']);
+$mypassword = clean($_POST['mypassword']);
 
 
-$sql = "SELECT * FROM photoApp_user WHERE username='$myusername' and password='$mypassword'";
+$sql = "SELECT * FROM photoApp_user WHERE username='$myusername' AND password='$mypassword'";
 $result = mysqli_query($connection, $sql);
 
 //If user is found the count will be equal to 1, else wrong username or password
@@ -21,5 +21,11 @@ if ($count == 1) {
     echo "<script type='text/javascript'>alert('$message');</script>";
     echo '<body><a href="index.php" style="margin: 1% 1% 0% 0%;">Back to Login Page</a></body>';
 
+}
+
+function clean($string) {
+    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
 ?>

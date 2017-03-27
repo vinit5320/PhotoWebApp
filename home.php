@@ -28,10 +28,10 @@ $result = mysqli_query ($connection,$sql);
 <head>
     <meta charset="utf-8">
 
-    <title>Welcome, <?php echo $mainname; ?></title>
+    <title>Welcome, <?php echo strip_tags($mainname); ?></title>
     <!--Style Sheet-->
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="angularjs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <!---->
 
     <script>
@@ -56,7 +56,7 @@ $result = mysqli_query ($connection,$sql);
             <li role="presentation" class=""><a href="addphoto.php">Add Photo</a></li>
             <li role="presentation" class="dropdown" style="margin-left: 1%;">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <?php echo $mainname; ?> <span class="caret"></span>
+                    <?php echo strip_tags($mainname); ?> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li role="presentation"><a href="profile.php">Profile</a></li>
@@ -76,13 +76,13 @@ $result = mysqli_query ($connection,$sql);
             echo "<div class='col-lg-4 col-sm-6'>";
             echo "<div class='thumbnail'>";
             echo "<a href='#' data-toggle='modal' data-target='#myModal' onclick='imgchange(".$i.")'>";
-            echo "<img style='height: 188px;' id='mainImg' src='uploads/".$row['imageName']."'>";
+            echo "<img style='height: 188px;' id='mainImg' src='uploads/".strip_tags($row['imageName'])."'>";
             echo "</a>";
             echo "<hr>";
             if($row['caption'] == ""){
                 echo "<span>No Caption</span><p style='float: right; color:#000;'>".$row['username']."</p>";
             } else {
-                echo "<span id='caption'>Caption: " . $row['caption'] . "</span><p style='float: right; color:#000;'>".$row['username']."</p>";
+                echo "<span id='caption'>Caption: " . strip_tags($row['caption'], '') . "</span><p style='float: right; color:#000;'>".strip_tags($row['username'])."</p>";
             }
             echo "</div>";
             echo "</div>";
@@ -114,10 +114,10 @@ $row = mysqli_fetch_row($countResult);
 $total = $row[0];
 $pages = ceil($total / $limit);
 if($pages != 1) {
-    $pageLink = "<ul style='margin-left: 1%;' class='pagination'>";
+    $pageLink = "<ul style='margin-left: 1%;' class=\"pagination\">";
     for ($i = 1; $i <= $pages; $i++) {
         if ($page == $i) {
-            $pageLink .= "<li class='active'><a href='home.php?page=" . $i . "'>" . $i . "</a></li>";
+            $pageLink .= "<li class='active'><a href='home.php?page=" . $i . "'>" . $i . "<span class=\"sr-only\">(current)</span></a></li>";
         } else {
             $pageLink .= "<li><a href='home.php?page=" . $i . "'>" . $i . "</a></li>";
         }
