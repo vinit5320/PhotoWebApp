@@ -45,6 +45,7 @@ if(isset($_SESSION['sessionVar'])){
                 <div class="form-wrap">
                     <h1>Log in to the network</h1>
                     <form role="form" action="checklogin.php" method="post" id="login-form" autocomplete="off">
+                        <?php echo '<input type="hidden" name="csrf" value="'. $csrf->getToken() .'" />'; ?>
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
                             <input type="text" name="myusername" id="email" class="form-control" placeholder="username">

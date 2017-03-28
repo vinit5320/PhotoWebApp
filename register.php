@@ -24,6 +24,7 @@
                 <div class="form-wrap">
                     <h1>Fill in details to register</h1>
                     <form role="form" action="?act=register" method="post" id="login-form" autocomplete="off">
+                        <?php echo '<input type="hidden" name="registercsrf" value="'. $csrf->getToken() .'" />'; ?>
                         <div class="form-group">
                             <label for="email" class="sr-only">Full Name</label>
                             <input type="text" name="name" id="email" size="30" class="form-control" placeholder="full name">
