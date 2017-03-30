@@ -121,7 +121,7 @@ function register(){
 
 
 //If everything is okay let's register this user
-
+    $password = md5($password);
     $insertQuery = "INSERT INTO photoApp_user (username,password,email,name) VALUES ('$username','$password','$email','$name')";
 
     if(!mysqli_query($connection, $insertQuery)){

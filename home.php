@@ -2,6 +2,7 @@
 include 'library.php';
 
 $usrname= $_SESSION['sessionVar'];
+$mainname= '';
 
 $sql="SELECT name FROM photoApp_user WHERE username = '$usrname'";
 $result=mysqli_query($connection, $sql);

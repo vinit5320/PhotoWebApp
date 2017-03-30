@@ -21,15 +21,14 @@ if(isset($_POST['submit'])){
 
     if (!$csrf->isTokenValid($_POST['photocsrf'])) {
         echo 'CSRF Attack detected!';
-    }
-    else {
+    } else {
         $extension = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
-        if(in_array($extension,$allowed) ) {
+        if (in_array($extension, $allowed)) {
             $mixName = explode(".", $_FILES["file"]["name"]);
             $newName = round(microtime(true)) . '.' . end($mixName);
-            move_uploaded_file($_FILES["file"]["tmp_name"], "uploads/" . $usrname ."_". $newName);
-            $insertQuery = "INSERT INTO photoApp_photos (username,imageName,caption) VALUES ('$usrname','".$usrname ."_". $newName."','".$_POST['caption']."')";
-            $result=mysqli_query($connection, $insertQuery);
+            move_uploaded_file($_FILES["file"]["tmp_name"], "uploads/" . $usrname . "_" . $newName);
+            $insertQuery = "INSERT INTO photoApp_photos (username,imageName,caption) VALUES ('$usrname','" . $usrname . "_" . $newName . "','" . $_POST['caption'] . "')";
+            $result = mysqli_query($connection, $insertQuery);
             $message = "Image uploaded successfully!";
             echo "<script type='text/javascript'>alert('$message');</script>";
         } else {

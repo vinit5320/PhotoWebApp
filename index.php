@@ -58,6 +58,7 @@ if(isset($_SESSION['sessionVar'])){
                             <span class="character-checkbox" onclick="showPassword()"></span>
                             <span class="label">Show password</span>
                         </div>
+                        <input type="hidden" name="redirect" value="home.php">
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" name="submit" value="Log in">
                     </form>
                     <div class="login-help">

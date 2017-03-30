@@ -4,6 +4,7 @@ include 'library.php';
 // username and password sent from login page
 $myusername = clean($_POST['myusername']);
 $mypassword = clean($_POST['mypassword']);
+$redirectLocation = $_POST['redirect'];
 
 if (!$csrf->isTokenValid($_POST['csrf']))
 {
@@ -11,6 +12,7 @@ if (!$csrf->isTokenValid($_POST['csrf']))
 }
 else
 {
+    $mypassword = md5($mypassword);
     $sql = "SELECT * FROM photoApp_user WHERE username='$myusername' AND password='$mypassword'";
     $result = mysqli_query($connection, $sql);
 
@@ -18,9 +20,9 @@ else
     $count = mysqli_num_rows($result);
 
     if ($count == 1) {
-        $_SESSION['sessionVar'] = $myusername;
+        $_SESSION['sessionVar'] = md5($myusername);
 
-        header("location:home.php");
+        header("location:".$redirectLocation);
     } else {
         $message = "Wrong Username or Password";
         echo "<script type='text/javascript'>alert('$message');</script>";
